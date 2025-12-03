@@ -1,0 +1,126 @@
+body {
+				background: #f9f9f9;
+				display: flex;
+				margin: 0;
+                margin-top: 30px;
+				min-height: 100vh;
+				font-family: Arial, sans-serif;
+				transition: all 0.3s ease;
+			}
+
+			.sidebar {
+				width: 260px;
+				background-color: #ffffff;
+				border-right: 1px solid #ddd;
+				padding: 20px;
+				box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				transition: transform 0.3s ease;
+				position: fixed;
+				top: 0;
+				left: 0;
+				height: 100vh;
+				z-index: 1000;
+                overflow: scroll;
+			}
+
+			.sidebar.closed {
+				transform: translateX(-100%);
+			}
+
+			.sidebar h6 {
+				text-align: center;
+				margin-bottom: 10px;
+				color: #0A192F;
+                margin-top: 30px;
+			}
+
+			#signinArea {
+				text-align: center;
+				width: 100%;
+                margin-top: 400px;
+                flex-direction: column;
+                display: flex;
+			}
+
+			#signinArea p {
+				font-weight: bold;
+				margin-bottom: 8px;
+			}
+
+			.profile {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				text-align: center;
+				margin-top: 20px;
+				border-top: 1px solid #eee;
+				padding-top: 15px;
+				width: 100%;
+			}
+
+			.profile img {
+				width: 60px;
+				height: 60px;
+				border-radius: 50%;
+			}
+
+			#userProfile{
+				margin-bottom: 100px;
+			}
+
+			.open-btn, .close-btn {
+				position: fixed;
+				top: 15px;
+				left: 15px;
+				background: #337cc995;
+				color: white;
+				border: none;
+				border-radius: 4px;
+				padding: 6px 10px;
+				cursor: pointer;
+				z-index: 1100;
+				transition: all 0.2s ease;
+			}
+
+			.close-btn {
+				position: absolute;
+				top: 10px;
+				right: 10px;
+				background: transparent;
+				color: #333;
+				font-size: 20px;
+				border: none;
+			}
+
+			.main {
+				flex: 1;
+				padding: 30px;
+				margin-left: 260px;
+				width: 100%;
+				transition: margin-left 0.3s ease;
+			}
+
+			.main.full {
+				margin-left: 25px;
+			}
+
+			#response {
+				margin-top: 10px;
+				padding: 10px;
+				min-height: 60px;
+				border-radius: 5px;
+				background: #fff;
+				box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+			}
+
+			.history-item {
+			  padding: 8px 10px;
+			  background: #f2f2f2;
+			  border-radius: 6px;
+			  margin-bottom: 8px;
+			  cursor: pointer;
+			  font-size: 14px;
+			}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>AI SearchEngine</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="style.css" />
+        <script src="https://accounts.google.com/gsi/client" async defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    </head>
+    <body> 
+        <button class="open-btn" id="openSidebar">☰</button>
+
+        <div class="sidebar closed" id="sidebar">
+            <button class="close-btn" id="closeSidebar">&larr;</button>
+            <h6>Search Bot using Groq API</h6>
+
+            <div id="signinArea">
+                <p>Continue with Google</p>
+                <div id="g_id_signin"></div>
+            </div>
+
+            <div class="profile" id="userProfile" style="display: none;">
+                <img id="userImg" src="" alt="Profile" />
+                <h6 id="userName"></h6>
+                <button class="btn btn-outline-danger btn-sm" onclick="logout()">Logout</button>
+            </div>
+
+            <div class="history-section" id="chatHistorySection" style="width:100%; margin-top:40px; display:none;">
+                <h6>Your Chats</h6>
+                <button class="btn btn-danger btn-sm" onclick="deleteChatHistory()" style="width:100%; margin-bottom:10px;">
+                    Delete All History
+                </button>
+                <ul id="chatHistoryList" style="list-style:none; padding-left:0; max-height:250px; overflow-y:auto;"></ul>
+            </div>
+        </div>
+
+        <div class="main full" id="mainContent">
+            <h2>Ron's SearchBot</h2>
+            <div id="chatbotUI">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" id="userInput" placeholder="Ask Anything — I'm your SearchBot" />
+                </div>
+                <div class="input-group-append">
+                    <button class="btn btn-success" onclick="sendMessage()">Ask!</button>
+                </div>
+            </div>
+            <div id="response"></div>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+</html>
