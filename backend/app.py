@@ -39,4 +39,4 @@ if _name_ == '_main_':
     # Get the PORT from Render, or use 10000 if running locally
     port = int(os.environ.get('PORT', 10000))
     # host='0.0.0.0' is CRITICAL for Render to work
-    app.run(host='0.0.0.0', port=port)
+    app.run(host='0.0.0.0',port=port)
