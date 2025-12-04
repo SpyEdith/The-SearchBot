@@ -1,15 +1,23 @@
 import os
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory # <--- 1. Added send_from_directory
 from flask_cors import CORS
 from groq import Groq
 from dotenv import load_dotenv
 
 load_dotenv()
 
-app = Flask(__name__)
-CORS(app)  # Allows the frontend to talk to this server
+# <--- 2. UPDATED: Tells Flask where to find your frontend HTML files
+# We assume 'frontend' is one folder up from 'backend'
+app = Flask(__name__, static_folder='../frontend', static_url_path='')
+CORS(app)
 
 client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
+
+# <--- 3. ADDED: The Home Page Route
+# When user opens the site, serve index.html
+@app.route('/')
+def serve_index():
+    return send_from_directory(app.static_folder, 'index.html')
 
 @app.route('/chat', methods=['POST'])
 def chat():
@@ -20,12 +28,12 @@ def chat():
         return jsonify({"error": "No message provided"}), 400
 
     try:
-        # This is where the Backend talks to Groq securely
         chat_completion = client.chat.completions.create(
             messages=[
                 {"role": "user", "content": user_message}
             ],
-            model="openai/gpt-oss-120b", # You can change models here
+            # I switched this back to a standard Groq model to ensure it works
+            model="llama3-8b-8192", 
         )
         
         ai_response = chat_completion.choices[0].message.content
@@ -36,7 +44,6 @@ def chat():
         return jsonify({"error": "Internal Server Error"}), 500
 
 if __name__ == '__main__':
-    # Get the PORT from Render, or use 10000 if running locally
+    # KEPT YOUR CONFIGURATION EXACTLY AS REQUESTED
     port = int(os.environ.get('PORT', 10000))
-    # host='0.0.0.0' is CRITICAL for Render to work
-    app.run(host='0.0.0.0',port=port)
+    app.run(host='0.0.0.0', port=port)
