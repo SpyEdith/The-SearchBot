@@ -118,7 +118,11 @@ async function sendMessage() {
 
     try {
         // We now fetch from our OWN Python Backend, not Groq directly
+<<<<<<< HEAD
         const response = await fetch('https://the-searchbot-3.onrender.com/chat', {
+=======
+        const response = await fetch('/chat', { //http://127.0.0.1:5000
+>>>>>>> baf16aa (Fix Render backend)
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ message: input })
